@@ -579,6 +579,15 @@ return view.extend({
 		so = ss.option(form.Flag, 'disable_cache_expire', _('Disable cache expire'));
 		so.default = so.disabled;
 		so.depends('disable_cache', '0');
+
+		so = ss.option(form.Flag, 'independent_cache', _('Independent cache per server'),
+			_('Make each DNS server\'s cache independent for special purposes. If enabled, will slightly degrade performance.'));
+		so.default = so.disabled;
+		so.depends('disable_cache', '0');
+
+		so = ss.option(form.Flag, 'reverse_mapping', _('Reverse mapping'),
+			_('Stores a reverse mapping of IP addresses after responding to a DNS query in order to provide domain names when routing.'));
+		so.default = so.disabled;
 		/* DNS settings end */
 
 		/* DNS servers start */
