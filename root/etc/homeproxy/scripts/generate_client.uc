@@ -426,7 +426,7 @@ if (!isEmpty(main_node)) {
 			user_id: parse_uid(cfg.user_id),
 			clash_mode: cfg.clash_mode,
 			invert: (cfg.invert === '1'),
-			outbound: parse_outbound(cfg.outbound),
+			outbound: (cfg.any_outbound === '1') ? 'any' : parse_outbound(cfg.outbound),
 			server: get_resolver(cfg.server),
 			disable_cache: (cfg.dns_disable_cache === '1'),
 			rewrite_ttl: strToInt(cfg.rewrite_ttl)

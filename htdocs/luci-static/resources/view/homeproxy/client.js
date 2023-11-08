@@ -824,12 +824,18 @@ return view.extend({
 		so.default = so.disabled;
 		so.modalonly = true;
 
+		so = ss.option(form.Flag, 'any_outbound', _('ANY Outbound'),
+			_('Match ANY outbound.'));
+		so.default = so.disabled;
+		so.modalonly = true;
+
 		so = ss.option(form.MultiValue, 'outbound', _('Outbound'),
 			_('Match outbound.'));
 		so.load = function(section_id) {
 			delete this.keylist;
 			delete this.vallist;
 
+			//this.value('any', _('ANY'));
 			this.value('direct-out', _('Direct'));
 			this.value('block-out', _('Block'));
 			uci.sections(data[0], 'routing_node', (res) => {
@@ -839,6 +845,19 @@ return view.extend({
 
 			return this.super('load', section_id);
 		}
+		//so.validate = function(section_id, value) {
+		//	if (value.split(' ').includes('any') && (value != 'any'))
+		//		return _('Expecting: %s').format(_('If ANY is selected, uncheck others.'));
+        //
+		//	return true;
+		//}
+		//so.write = function(section_id, value) {
+		//	if (value.includes('any'))
+		//		value = ['any'];
+        //
+		//	return uci.set('homeproxy', section_id, 'outbound', value);
+		//}
+		so.depends('any_outbound', '0');
 		so.modalonly = true;
 
 		so = ss.option(form.ListValue, 'server', _('Server'),
