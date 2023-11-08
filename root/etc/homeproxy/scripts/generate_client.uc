@@ -281,6 +281,17 @@ function get_outbound(cfg) {
 	}
 }
 
+function parse_outbound(rawobs) {
+	if (type(rawobs) !== 'array' || isEmpty(rawobs))
+		return null;
+
+	let obs = [];
+	for (let i in rawobs)
+		push(obs, get_outbound(i));
+
+	return obs;
+}
+
 function get_resolver(cfg) {
 	if (isEmpty(cfg))
 		return null;
@@ -415,7 +426,7 @@ if (!isEmpty(main_node)) {
 			user_id: parse_uid(cfg.user_id),
 			clash_mode: cfg.clash_mode,
 			invert: (cfg.invert === '1'),
-			outbound: get_outbound(cfg.outbound),
+			outbound: parse_outbound(cfg.outbound),
 			server: get_resolver(cfg.server),
 			disable_cache: (cfg.dns_disable_cache === '1'),
 			rewrite_ttl: strToInt(cfg.rewrite_ttl)
