@@ -717,10 +717,24 @@ return view.extend({
 		so.rmempty = false;
 		so.readonly = true;
 
+		so = ss.option(form.ListValue, 'ip_version', _('IP Version'));
+		so.value('4', _('IPv4'));
+		so.value('6', _('IPv6'));
+		so.value('', _('Both'));
+		so.modalonly = true;
+
+		so = ss.option(form.DynamicList, 'query_type', _('Query type'),
+			_('Match query type.'));
+		so.modalonly = true;
+
 		so = ss.option(form.ListValue, 'network', _('Network'));
 		so.value('tcp', _('TCP'));
 		so.value('udp', _('UDP'));
 		so.value('', _('Both'));
+
+		so = ss.option(form.DynamicList, 'auth_user', _('Auth user'),
+			_('Match auth user.'));
+		so.modalonly = true;
 
 		so = ss.option(form.MultiValue, 'protocol', _('Protocol'),
 			_('Sniffed protocol, see <a target="_blank" href="https://sing-box.sagernet.org/configuration/route/sniff/">Sniff</a> for details.'));
@@ -792,6 +806,19 @@ return view.extend({
 			_('Match user name.'));
 		so.modalonly = true;
 
+		so = ss.option(form.DynamicList, 'user_id', _('User ID'),
+			_('Match user ID.'));
+		so.datatype = 'uinteger';
+		so.modalonly = true;
+
+		so = ss.option(form.ListValue, 'clash_mode', _('Clash mode'),
+			_('Match clash mode.'));
+		so.value('', _('None'));
+		so.value('global', _('Global'));
+		so.value('rule', _('Rule'));
+		so.value('direct', _('Direct'));
+		so.modalonly = true;
+
 		so = ss.option(form.Flag, 'invert', _('Invert'),
 			_('Invert match result.'));
 		so.default = so.disabled;
@@ -836,6 +863,11 @@ return view.extend({
 		so = ss.option(form.Flag, 'dns_disable_cache', _('Disable dns cache'),
 			_('Disable cache and save cache in this query.'));
 		so.default = so.disabled;
+		so.modalonly = true;
+
+		so = ss.option(form.Value, 'rewrite_ttl', _('Rewrite TTL'),
+			_('Rewrite TTL in DNS responses.'));
+		so.datatype = 'uinteger';
 		so.modalonly = true;
 		/* DNS rules end */
 		/* Custom routing settings end */
