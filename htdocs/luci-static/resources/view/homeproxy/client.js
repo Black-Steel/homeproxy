@@ -562,6 +562,7 @@ return view.extend({
 			delete this.vallist;
 
 			this.value('default-dns', _('Default DNS (issued by WAN)'));
+			this.value('system-dns', _('System DNS (Usually Dnsmasq)'));
 			this.value('block-dns', _('Block DNS queries'));
 			uci.sections(data[0], 'dns_server', (res) => {
 				if (res.enabled === '1')
@@ -626,6 +627,7 @@ return view.extend({
 
 			this.value('', _('None'));
 			this.value('default-dns', _('Default DNS (issued by WAN)'));
+			this.value('system-dns', _('System DNS (Usually Dnsmasq)'));
 			uci.sections(data[0], 'dns_server', (res) => {
 				if (res['.name'] !== section_id && res.enabled === '1')
 					this.value(res['.name'], res.label);
@@ -822,6 +824,7 @@ return view.extend({
 			delete this.vallist;
 
 			this.value('default-dns', _('Default DNS (issued by WAN)'));
+			this.value('system-dns', _('System DNS (Usually Dnsmasq)'));
 			this.value('block-dns', _('Block DNS queries'));
 			uci.sections(data[0], 'dns_server', (res) => {
 				if (res.enabled === '1')

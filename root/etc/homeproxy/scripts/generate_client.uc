@@ -260,7 +260,7 @@ function get_resolver(cfg) {
 	if (isEmpty(cfg))
 		return null;
 
-	if (cfg in ['default-dns', 'block-dns'])
+	if (cfg in ['default-dns', 'system-dns', 'block-dns'])
 		return cfg;
 	else
 		return 'cfg-' + cfg + '-dns';
@@ -284,6 +284,11 @@ config.dns = {
 		{
 			tag: 'default-dns',
 			address: wan_dns,
+			detour: 'direct-out'
+		},
+		{
+			tag: 'system-dns',
+			address: 'local',
 			detour: 'direct-out'
 		},
 		{
