@@ -18,13 +18,10 @@ PKG_NAME:=luci-app-homeproxy
 define Package/luci-app-homeproxy/conffiles
 /etc/config/homeproxy
 /etc/homeproxy/certs/
-/etc/homeproxy/resources/geoip.db
-/etc/homeproxy/resources/geoip.ver
-/etc/homeproxy/resources/geosite.db
-/etc/homeproxy/resources/geosite.ver
+/etc/homeproxy/ruleset/
 /etc/homeproxy/resources/direct_list.txt
 /etc/homeproxy/resources/proxy_list.txt
-/etc/homeproxy/clash_cache.db
+/etc/homeproxy/cache.db
 endef
 
 include $(TOPDIR)/feeds/luci/luci.mk
